@@ -11,11 +11,11 @@ bool point(string address)
 	{
 		if (address[i] == '.' && address[i] != address[i - 1])
 			++counter;
-		/*if (address[i] == '0' && address[i] == address[i - 1])
+		if (address[i] == '0' && address[i] == address[i - 1])
 		{
 			cout << "Invalid (00)\n";
 			return false;
-		}*/
+		}
 	}
 	if (counter == 3)
 		return true;
