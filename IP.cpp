@@ -6,21 +6,26 @@ using namespace std;
 
 bool point(string address)
 {
-	int counter = 0;
+	int counterOktet = 0;
+	int counterPoint = 0;
 	for (int i = 1; i < address.length(); i++)
 	{
 		if (address[i] == '.' && address[i] != address[i - 1])
-			++counter;
+			++counterOktet;
+		if (address[i] == '.')
+			++counterPoint;
 		if (address[i] == '0' && address[i] == address[i - 1])
 		{
 			cout << "Invalid (00)\n";
 			return false;
 		}
 	}
-	if (counter == 3)
-		return true;
-	cout << "Invalid (point)\n";
-	return false;
+	if (counterOktet != 3 || counterPoint != 3)
+	{
+		cout << "Invalid (point)\n";
+		return false;
+	}
+	return true;
 }
 
 bool number(string address)
@@ -50,7 +55,7 @@ bool oktet(string address, int *oktet, const int C)
 			if (address[address.length() - j - 1] != '.')
 			{	
 				okt += address[address.length() - j - 1];
-				oktet[C - i] += (address[address.length() - j - 1] - 48) * pow(10, j);
+				oktet[C - i] = stoi(okt);
 			}
 			else
 			{
